@@ -1,0 +1,23 @@
+!!!
+%html
+  %head
+    %title= yield(:title)
+    = stylesheet_link_tag 'screen.css', :media => 'screen, projection'
+    = stylesheet_link_tag 'print.css', :media => 'print'
+    /[if lt IE 8]
+    = stylesheet_link_tag 'ie.css', :media => 'screen, projection'
+    = csrf_meta_tag
+    = yield(:head)
+  %body
+    #container
+      #header
+        %h1= yield(:title) || "#{params[:controller].capitalize}"
+      #sidebar
+        This is the sidebar
+      #content
+        = yield
+      #container-footer
+    #footer
+      This is the footer
+    = javascript_include_tag :jquery
+    = javascript_include_tag "#{params[:controller]}"
